@@ -25,7 +25,7 @@ const handleLaunchTo = (item) => {
 <template>
   <div class="menu-wrap">
     <!-- 遮罩层 -->
-    <div v-show="props.isShowMenu" class="mask" @click="emits('hide')"></div>
+    <div :class="['menu-mask', { active: props.isShowMenu }]" @click="emits('hide')"></div>
     <!-- 菜单面板 -->
     <transition
       :duration="1000"
@@ -66,7 +66,7 @@ const handleLaunchTo = (item) => {
 
             <div class="menu-item" v-else @click.stop="handleLaunchTo(l)">
               <div class="menu-tab flex items-center pl-50">
-                <div>{{ $t(l.name) }}</div>
+                <div class="text-white">{{ $t(l.name) }}</div>
               </div>
               <!-- <img src="@img/common/icon-arrow.png" alt="arrow" class="arrow" /> -->
             </div>
@@ -98,8 +98,9 @@ const handleLaunchTo = (item) => {
   top: 0;
   // padding-top: calc($mobTopBarHeight + 30rem);
   // padding-right: 22rem;
-  background-color: #008c8c;
+  // background-color: #008c8c;
   @include -width(100%, 750px, 750px);
+  // width: 100vw;
   height: 100vh;
   overflow: auto;
   z-index: 10000;
@@ -142,6 +143,68 @@ const handleLaunchTo = (item) => {
     border: solid 1.5px #fff;
   }
 }
+
+/* 遮罩层 左上角弹出 --start */
+.menu-mask {
+  position: fixed;
+  z-index: 98;
+
+  &::before,
+  &::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to right bottom, #000, #333, );
+    border-bottom-right-radius: 200%; // 右下角圆角
+    z-index: -1;
+    -webkit-transition: -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s,
+      border-radius linear 0.8s;
+    transition: -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, border-radius linear 0.8s;
+    transition: transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, border-radius linear 0.8s;
+    transition: transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s,
+      -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.6s, border-radius linear 0.8s;
+    // 左上角弹出
+    -webkit-transform: translateX(-100%) translateY(-100%);
+    transform: translateX(-100%) translateY(-100%);
+  }
+
+  &::before {
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+  }
+
+  &::after {
+    /* background: #FFFCF3; */
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+  }
+
+  &.active {
+
+    &::before,
+    &::after {
+      /* 左上角弹出 */
+      -webkit-transform: translateX(0%) translateY(0%);
+      transform: translateX(0%) translateY(0%);
+      border-radius: 0;
+    }
+
+    &::before {
+      -webkit-transition-delay: 0s;
+      transition-delay: 0s;
+    }
+
+    &::after {
+      -webkit-transition-delay: 0.1s;
+      transition-delay: 0.1s;
+    }
+  }
+}
+
+/* 遮罩层 --end */
 
 :deep(.el-collapse) {
   border: none !important;

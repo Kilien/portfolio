@@ -21,7 +21,6 @@
 
 // vant
 .van-popup {
-  border-radius: 16rem;
   background: transparent !important;
 }
 
@@ -31,6 +30,18 @@
   border-radius: 10rem;
   background-color: #eaf4ff !important;
   border: solid 2px #fff;
+}
+
+// 箭头
+.icon-arrow {
+  cursor: pointer;
+}
+
+// 加载中和空数据
+.loading,
+.empty {
+  text-align: center;
+  margin: 10rem 0;
 }
 
 // 按钮通用样式
@@ -57,4 +68,59 @@
   &.disable {
     filter: grayscale(99%);
   }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 25%;
+  }
+  25% {
+    background-position: 25% 50%;
+  }
+  50% {
+    background-position: 50% 75%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+$peach: #ffac55;
+$purple: #ff8656;
+$blue: #ff8055;
+
+.dapp-btn--active {
+  border: none !important;
+  -webkit-appearance: none;
+  background: linear-gradient(to right, $purple 0%, $blue 50%, $peach 100%);
+  background-size: 200%;
+  animation-name: gradient;
+  -webkit-animation-name: gradient;
+  animation-duration: 2s;
+  -webkit-animation-duration: 2s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-direction: alternate;
+}
+
+.dapp-btn {
+  width: 164rem;
+  height: 46rem;
+  @include -height(52rem, 46rem, 46rem);
+  color: #efefef;
+  @include -font-size(22rem, 14rem, 14rem);
+  border-radius: 6rem;
+  border: 1px solid #efefef;
+  &:hover {
+    @extend .dapp-btn--active;
+  }
+  /* animation: name duration timing-function delay iteration-count direction alternate; */
+}
+
+.home-title {
+  font-size: 64rem;
+  font-weight: 600;
+  font-family: founder-semi-bold;
 }

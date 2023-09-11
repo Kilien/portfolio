@@ -53,7 +53,7 @@ function handleMenu() {
 .top-bar-wrap {
   width: 100%;
   height: $mobTopBarHeight;
-  background-color: skyblue;
+  background-color: #000;
   @include flexPos(space-between);
   padding: 0 45rem;
   color: #fff;
@@ -101,7 +101,7 @@ function handleMenu() {
     transition: 0.4s;
     width: 20px;
     height: $barHeight;
-    background-color: #000;
+    background-color: #fff;
     transform-origin: center;
   }
 

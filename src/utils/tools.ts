@@ -1,4 +1,5 @@
 import { supportedChains } from '@/contracts/chains';
+import imagesLoaded from 'imagesloaded';
 
 /**
  * 获取随机数
@@ -106,3 +107,9 @@ export function getWalletReject(error): boolean {
 export function getImage(name: string) {
   return new URL(`../assets/img/${name}`, import.meta.url).href;
 }
+
+export const preloadImages = (selector = 'img') => {
+  return new Promise((resolve) => {
+      imagesLoaded(document.querySelectorAll(selector), {background: true}, resolve);
+  });
+};

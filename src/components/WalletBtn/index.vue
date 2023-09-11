@@ -36,6 +36,7 @@ async function handleLink() {
   .link-btn {
     height: calc($mobTopBarHeight - $walletBtnMenuGap);
     padding: 0 30rem;
+    color: #fff;
     @include flexPos(center);
     font-size: 24rem;
     border-radius: 8rem;
