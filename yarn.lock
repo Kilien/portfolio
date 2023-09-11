@@ -2237,7 +2237,7 @@ globals@^11.1.0:
 
 graceful-fs@^4.1.6, graceful-fs@^4.2.0:
   version "4.2.11"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
+  resolved "https://registry.npmmirror.com/graceful-fs/-/graceful-fs-4.2.11.tgz#4183e4e8bf08bb6e05bbb2f7d2e0c8f712ca40e3"
   integrity sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==
 
 gsap@^3.11.5:
@@ -3259,13 +3259,8 @@ textify.js@^2.4.3:
 
 three@^0.151.3:
   version "0.151.3"
-  resolved "https://registry.npmjs.org/three/-/three-0.151.3.tgz#0b3c7de4b070d5b66b15217f42465d67cbfa6004"
+  resolved "https://registry.npmmirror.com/three/-/three-0.151.3.tgz#0b3c7de4b070d5b66b15217f42465d67cbfa6004"
   integrity sha512-+vbuqxFy8kzLeO5MgpBHUvP/EAiecaDwDuOPPDe6SbrZr96kccF0ktLngXc7xA7bzyd3N0t2f6mw3Z9y6JCojQ==
-
-threejs-toys@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.npmjs.org/threejs-toys/-/threejs-toys-0.0.8.tgz#cf99b3ecaebcda18f72ace8ea0e70ecfc2214008"
-  integrity sha512-FTlSVbNJQA4KhMTvDrcsSrfUH5hQzzzyZ9HQk76p6V4kY5O7zoH1zb0tAnir4kDaMupANNW5Ra7ur98+Fjg4bQ==
 
 tiny-emitter@^2.1.0:
   version "2.1.0"

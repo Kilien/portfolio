@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import noiseCanvas from './noiseCanvas.vue';
+import waveCanvas from './waveCanvas.vue';
 import { useAppStore } from '@/store/appStore';
 
 
@@ -9,7 +10,8 @@ const appStore = useAppStore();
 
 <template>
   <div class="banner-wrap">
-    <noise-canvas />
+    <!-- <noise-canvas /> -->
+    <wave-canvas />
     <div class="w-full flex justify-center items-center">
       <div class="w-1200 h-480 flex justify-around items-center">
         <h2>Hey</h2>
