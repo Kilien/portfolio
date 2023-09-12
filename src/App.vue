@@ -1,11 +1,11 @@
 <template>
   <!-- 顶部栏 -->
-  <TopBar />
+  <TopBar v-if="showTopBar" />
 
   <!-- <MousePoint v-if="appStore.curDevice !== 'phone'" /> -->
 
   <!-- 各路由 -->
-  <div id="mainContainer">
+  <div id="mainContainer" :class="[{ welcoming: isWelcoming }]">
     <router-view v-slot="{ Component }">
       <keep-alive>
         <component :is="Component" v-if="$route.meta?.keepAlive" />
@@ -14,23 +14,43 @@
     </router-view>
   </div>
 
-  <Footer />
+  <Footer v-if="!isWelcoming" />
 </template>
 
 <script>
 import TopBar from '@cps/TopBar/index.vue';
 import Footer from '@cps/Footer/index.vue';
+import { useRoute } from 'vue-router';
 import { useAppStore } from './store/appStore';
+import useLoadAnimate from './hooks/useLoadAnimate';
 import MousePoint from '@cps/MousePoint/index.vue';
 
 export default {
   components: {
     TopBar,
+    Footer
   },
   setup() {
+    useLoadAnimate();
     const appStore = useAppStore();
+    const route = useRoute();
+
+    const showTopBar = computed(() => {
+      if (route.name === 'home') {
+        if (!appStore.welcoming) {
+          // 如果是首页，必须等开屏视频结束后才显示顶部栏
+          return true;
+        }
+        return false;
+      }
+      return true;
+    });
+
+    const isWelcoming = computed(() => route.name === 'home' && appStore.welcoming);
     return {
       appStore,
+      showTopBar,
+      isWelcoming,
     };
   },
 };
@@ -38,7 +58,18 @@ export default {
 
 <style lang="scss">
 #mainContainer {
-  padding-top: $mobTopBarHeight;
+  /* PC端 */
+  padding-top: $pcTopBarHeight;
+
+  /* 移动端 */
+  @media (max-width: $phone) {
+    padding-top: $mobTopBarHeight;
+  }
+
+  &.welcoming {
+    padding-top: 0 !important;
+  }
+
   z-index: 2;
   position: relative;
 }

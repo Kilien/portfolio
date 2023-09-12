@@ -42,6 +42,8 @@ const useAppStore = defineStore('app', {
       countWallet: 0,
       countChain: 0,
     },
+    isFirstIn: true, // 首次进入
+    welcoming: false, // 开场动画
   }),
 
   actions: {
@@ -355,6 +357,14 @@ const useAppStore = defineStore('app', {
      */
     setTouchUrl(count: number) {
       this.touchUrl = count;
+    },
+
+    /**
+     * 控制开场动画视频
+     * @param{Boolean} payload 开 或 关
+     */
+    setWelcoming(payload) {
+      this.welcoming = payload;
     },
   },
 

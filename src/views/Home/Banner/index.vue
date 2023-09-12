@@ -1,25 +1,95 @@
 <script setup lang='ts'>
 import noiseCanvas from './noiseCanvas.vue';
+import { gsap } from 'gsap';
 import waveCanvas from './waveCanvas.vue';
 import { useAppStore } from '@/store/appStore';
 
 
 const appStore = useAppStore();
+const header = ref(null);
+const headerContainer = ref(null);
+const headerContainerSubtitle = ref(null);
+const subTitleText = ref('Software Developer');
+
+onMounted(() => {
+  gsap.fromTo(
+    headerContainer.value,
+    { y: -3 },
+    {
+      y: 20,
+      scrollTrigger: {
+        scrub: true,
+        trigger: header.value,
+        start: 'top-=50px top',
+        end: 'bottom top'
+      }
+    }
+  );
+  gsap.fromTo(
+    '.scroll-down',
+    { opacity: 1 },
+    {
+      opacity: 0,
+      scrollTrigger: {
+        scrub: 0.75,
+        trigger: header.value,
+        start: 'top+=25% top',
+        end: 'bottom-=25% top'
+      }
+    }
+  );
+  const tl = gsap.timeline({
+    paused: true,
+    delay: 0.25,
+  });
+  tl.from('.line__content', {
+    yPercent: 105,
+    ease: 'power1.out',
+    duration: 1,
+    stagger: 0.25
+  });
+  tl.from(
+    headerContainerSubtitle.value,
+    { opacity: 0, stagger: { amount: 0.5, from: 'center' } },
+    '-=0.75'
+  );
+
+  tl.from(
+    '.nav__sections__list__section, .nav__menu-button',
+    { opacity: 0, stagger: 0.05 },
+    '<+0.75'
+  );
+
+  tl.from('.scroll-down', { opacity: 0 }, '<+0.25');
+
+  watch(() => [appStore.welcoming], () => {
+    tl.play();
+  })
+})
 
 </script>
 
 <template>
-  <div class="banner-wrap">
+  <div class="banner-wrap" ref="header">
     <!-- <noise-canvas /> -->
     <wave-canvas />
-    <div class="w-full flex justify-center items-center">
-      <div class="w-1200 h-480 flex justify-around items-center">
-        <h2>Hey</h2>
+    <div ref="headerContainer" class="header__container">
+      <h1 class="header__container__title">
+        <span class="sr-only">Qifan Zhuang</span>
+        <span class="line" aria-hidden="true">
+          <span class="line__content">Qifan</span>
+        </span>
+        <span class="line" aria-hidden="true">
+          <span class="line__content ml-50 mt-25">Zhuang</span>
+        </span>
+      </h1>
 
-        <div class="flex flex-col justify-center items-center">
-          <img src="@img/holder.png" alt="holder" class="w-240 h-240 rounded-full mb-32"/>
-          <span class="text-24">{{ $p('Qifan Zhuang') }}</span>
-        </div>
+      <div class="header__container__subtitle">
+        <p class="sr-only">{{ subTitleText }}</p>
+        <!-- eslint-disable -->
+        <span v-for="(char, key) in subTitleText" :key="key" ref="headerContainerSubtitle" aria-hidden="true"
+          v-html="char" />
+        <!-- eslint-enable -->
       </div>
     </div>
   </div>
@@ -27,7 +97,47 @@ const appStore = useAppStore();
 
 <style lang="scss" scoped>
 .banner-wrap {
-  width: 100%;
+  --100vh: calc(100 * var(--vh, 1vh));
 
+  background-color: #030303;
+  justify-content: center;
+  align-items: center;
+  pointer-events: all;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  max-width: 100vw;
+  display: flex;
+  width: 100%;
+  z-index: 0;
+
+  .header__container {
+    mix-blend-mode: difference;
+    cursor: default;
+    color: white;
+
+    &__title {
+      margin-bottom: 1rem;
+      line-height: 1.2;
+
+      &>*:last-of-type {
+        margin-top: min(-0.5rem, calc(1vw * -1));
+      }
+    }
+
+    &__subtitle {
+      font-size: var(--step--1);
+      text-align: center;
+    }
+  }
+}
+
+.line {
+  overflow: hidden;
+  display: block;
+
+  &__content {
+    display: inline-block;
+  }
 }
 </style>

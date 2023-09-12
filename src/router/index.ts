@@ -42,6 +42,14 @@ const router = createRouter({
 
 router.beforeEach(
   (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+    const appStore = useAppStore();
+
+    // 开启开屏动画
+    if (appStore.isFirstIn) {
+      appStore.setWelcoming(true);
+      appStore.isFirstIn = false;
+    }
+
     // 每次进来，先拿一下钱包
     // const appStore = useAppStore();
     // appStore.linkWallet().then(() => {

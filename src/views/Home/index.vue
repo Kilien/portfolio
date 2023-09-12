@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import Banner from './Banner/index.vue';
-onMounted(() => {
+import { useAppStore, storeToRefs } from '@store/appStore';
 
-})
+const appStore = useAppStore();
+const { welcoming } = storeToRefs(appStore);
+
 </script>
 
 <template>
+  <Welcome v-show="welcoming" />
+
   <main class="home-wrap" id="header" data-scroll-container>
     <Banner />
 
