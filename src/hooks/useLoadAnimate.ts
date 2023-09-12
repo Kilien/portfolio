@@ -1,5 +1,6 @@
 import { useAppStore, storeToRefs } from '@store/appStore';
 import Lenis from '@studio-freight/lenis';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useRoute } from 'vue-router';
 
 /**
@@ -30,6 +31,8 @@ export default () => {
       touchMultiplier: 2,
       infinite: false,
     });
+
+    lenis.on('scroll', () => ScrollTrigger.update());
 
     function raf(time) {
       lenis.raf(time);
