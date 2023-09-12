@@ -75,12 +75,11 @@ onMounted(() => {
     <wave-canvas />
     <div ref="headerContainer" class="header__container">
       <h1 class="header__container__title">
-        <span class="sr-only">Qifan Zhuang</span>
         <span class="line" aria-hidden="true">
-          <span class="line__content">Qifan</span>
+          <span class="line__content text-64">{{ $p('Qifan') }}</span>
         </span>
         <span class="line" aria-hidden="true">
-          <span class="line__content ml-50 mt-25">Zhuang</span>
+          <span class="line__content ml-50 mt-25 text-64">{{ $p('Zhuang') }}</span>
         </span>
       </h1>
 
@@ -118,7 +117,6 @@ onMounted(() => {
 
     &__title {
       margin-bottom: 1rem;
-      line-height: 1.2;
 
       &>*:last-of-type {
         margin-top: min(-0.5rem, calc(1vw * -1));
@@ -126,7 +124,7 @@ onMounted(() => {
     }
 
     &__subtitle {
-      font-size: var(--step--1);
+      font-size: 32rem;
       text-align: center;
     }
   }

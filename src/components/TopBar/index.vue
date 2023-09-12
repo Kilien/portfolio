@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import Menu from './Menu.vue';
 import WalletBtn from '@cps/WalletBtn/index.vue';
-import { useTopBar } from './useTopBar';
+import { menuList, useTopBar } from './useTopBar';
+import { useAppStore } from '@/store/appStore';
 
-const { pickLang, langList, curLang } = useTopBar();
+const appStore = useAppStore();
+
+const { launchTo, pickLang, langList, curLang } = useTopBar();
 
 // 菜单是否为开启状态
 const isOpenMenu = ref(false);
@@ -17,11 +20,15 @@ function handleMenu() {
 <template>
   <div class="top-bar-wrap">
     <!-- 控制菜单显示和隐藏 按钮 -->
-    <div :class="['toggle-container', { opening: isOpenMenu }]" @click="handleMenu">
+    <div :class="['toggle-container', { opening: isOpenMenu }]" @click="handleMenu" v-if="appStore.curDevice === 'phone'">
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
+
+    <ul class="menu-list" v-else>
+      <li class="text-20 ml-25 cursor-pointer hover:(scale-125 transition)" v-for="item in menuList" :key="item.id" @click="launchTo(item)">{{ item.name }}</li>
+    </ul>
 
     <!-- 一些工具：钱包、选择语言等 -->
     <div class="top-bar-tools">
@@ -63,6 +70,11 @@ function handleMenu() {
   z-index: 999;
 }
 
+.menu-list {
+  width: 100%;
+  @include flexPos(flex-start);
+}
+
 .top-bar-tools {
   @include flexPos(flex-start);
   position: absolute;
@@ -77,7 +89,7 @@ function handleMenu() {
     cursor: pointer;
     @include flexPos(flex-start);
     color: #fff;
-    font-size: 24rem;
+    font-size: 20rem;
 
     .icon-lang {
       width: 32rem;
@@ -112,9 +124,11 @@ function handleMenu() {
     .bar:nth-child(1) {
       transform: translateY($y) rotate(45deg);
     }
+
     .bar:nth-child(2) {
       opacity: 0;
     }
+
     .bar:nth-child(3) {
       transform: translateY($dy) rotate(-45deg);
     }

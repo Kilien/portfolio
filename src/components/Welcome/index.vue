@@ -9,7 +9,6 @@ const loaderWord1Chars = ref(null);
 onMounted(() => {
   // document.body.style.overflow = 'hidden';
   const readTime = 0.45;
-  // const { loader, loaderWord1Chars } = this.$refs;
   const loaderChildren = Array.from(loader.value?.children);
 
   const tl = gsap.timeline({
@@ -54,8 +53,6 @@ onMounted(() => {
       // this.$enableScrollY();
     },
     onEnd: () => {
-      // this.$nuxt.$emit('show-shader');
-      // this.$nuxt.$emit('show-layout');
       appStore.setWelcoming(false);
     }
   });
@@ -71,7 +68,7 @@ onMounted(() => {
       }}</span>
     </p>
     <p class="loader__word">and Welcome.</p>
-    <p class="loader__word loader__word--logo serif">QI</p>
+    <p class="loader__word loader__word--logo serif">Fan</p>
   </div>
 </template>
 
@@ -89,7 +86,7 @@ onMounted(() => {
 
   &__word {
     transform: translate(-50%, -50%);
-    font-size: var(--step-2);
+    font-size: 52rem;
     position: absolute;
     line-height: 1.125;
     overflow: hidden;
@@ -103,7 +100,7 @@ onMounted(() => {
     }
 
     &--logo {
-      font-size: var(--step-4);
+      font-size: 64rem;
     }
   }
 }

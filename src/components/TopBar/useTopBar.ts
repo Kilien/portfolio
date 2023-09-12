@@ -7,6 +7,7 @@ export interface IMemu {
   id: number;
   name: string;
   logo: any;
+  link?: string;
   urlName: string;
   active: boolean;
   children?: IMemu[];
@@ -16,16 +17,38 @@ export interface IMemu {
 const menuListValue = reactive<IMemu[]>([
   {
     id: 1,
-    name: 'base.3',
+    name: 'Home',
     logo: require('@img/holder.png'),
     urlName: 'home',
     active: false,
   },
   {
     id: 2,
-    name: 'base.4',
+    name: 'Blog',
+    link: 'https://kilien.github.io',
     logo: require('@img/holder.png'),
-    urlName: 'testPage',
+    urlName: '/',
+    active: false,
+  },
+  {
+    id: 3,
+    name: 'About',
+    logo: require('@img/holder.png'),
+    urlName: '/',
+    active: false,
+  },
+  {
+    id: 4,
+    name: 'Project',
+    logo: require('@img/holder.png'),
+    urlName: '/',
+    active: false,
+  },
+  {
+    id: 5,
+    name: 'Contact',
+    logo: require('@img/holder.png'),
+    urlName: '/',
     active: false,
   },
 ]);
@@ -121,7 +144,7 @@ export const useTopBar = () => {
     loadLink,
     pickLang,
     launchTo,
-    handleLink,
+    handleLink
   };
 };
 

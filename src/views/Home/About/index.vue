@@ -1,8 +1,6 @@
 <script setup lang='ts'>
 import ScrollOut from 'scroll-out';
 import { getImage } from '@/utils/tools';
-import textifyJs from 'textify.js';
-const { TextifyTitle, Textify } = textifyJs;
 
 const iconList = reactive([
   {
@@ -20,8 +18,8 @@ const iconList = reactive([
     svg: getImage('common/CSS.svg'),
   },
   {
-    svg: getImage('common/Rust.svg'),
-    link: 'https://rust-lang.org/'
+    svg: getImage('common/Threejs.svg'),
+    link: 'https://threejs.org/'
   },
   {
     svg: getImage('common/Python.svg'),
@@ -30,36 +28,6 @@ const iconList = reactive([
 ])
 
 onMounted(() => {
-  new TextifyTitle({
-    selector: ".title",
-    duration: 400,
-    stagger: 40,
-    fade: true,
-    top: false,
-    reveal: true,
-    once: false,
-    rotation: 0,
-    scale: 1,
-    easing: "linear",
-    fadeEasing: "backOut",
-    fadeDuration: 1000,
-    threshold: 1,
-    transformOrigin: "center center"
-  });
-
-  new Textify({
-    selector: ".paragraph",
-    duration: 2000,
-    stagger: 100,
-    fade: true,
-    top: false,
-    once: false,
-    rotation: 0,
-    scale: 0.75,
-    easing: "easeOut",
-    fadeEasing: "back"
-  });
-
   ScrollOut({
     targets: ".top",
     onShown: function (el) {

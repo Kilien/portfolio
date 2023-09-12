@@ -44,9 +44,9 @@ export default () => {
       nextTick(() => {
         loadScrollDelay();
 
-        setTimeout(() => {
-          window.scroll(0, 5); // 适配手机首次不显示
-        }, 4000);
+        // setTimeout(() => {
+        //   window.scroll(0, 5); // 适配手机首次不显示
+        // }, 2000);
       });
     }
   });
