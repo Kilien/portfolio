@@ -2,7 +2,7 @@
   <!-- 顶部栏 -->
   <TopBar v-if="showTopBar" />
 
-  <!-- <MousePoint v-if="appStore.curDevice !== 'phone'" /> -->
+  <MousePoint v-if="appStore.curDevice !== 'phone'" />
 
   <!-- 各路由 -->
   <div id="mainContainer" :class="[{ welcoming: isWelcoming }]">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Banner from './Banner/index.vue';
+import About from './About/index.vue';
 import { useAppStore, storeToRefs } from '@store/appStore';
 
 const appStore = useAppStore();
@@ -13,6 +14,7 @@ const { welcoming } = storeToRefs(appStore);
   <main class="home-wrap" id="header" data-scroll-container>
     <Banner />
 
+    <About />
   </main>
 </template>
 

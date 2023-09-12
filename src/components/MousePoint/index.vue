@@ -35,7 +35,7 @@ const doMouseLeave = evt => {
   if (ele?.classList?.contains?.('mouseTarget') || ele?.classList?.contains?.('char')) {
     bigCondiction.value = false;
   }
-  if (cursor.value.classList?.contains?.('big')) {
+  if (cursor.value?.classList?.contains?.('big')) {
     cursor.value?.classList.remove('big');
   }
 };
@@ -50,7 +50,7 @@ const recFatherNode = evt => {
   for (let i = 0, len = 5; i < len; i++) {
     let item = node ?? ele.parentElement;
     if (item?.classList?.contains('mouseTarget')) {
-      cursor.value.classList.add('big');
+      cursor.value?.classList?.add('big');
       break;
     } else {
       node = item?.parentElement;
@@ -68,7 +68,7 @@ onMounted(() => {
   document.body.addEventListener('mousemove', doMousePoint);
   document.body.addEventListener('mouseover', doMouseEnter);
   document.body.addEventListener('mouseout', doMouseLeave);
-  
+
   gsap.to('#app', 0.010, {
     repeat: -1,
 
@@ -82,14 +82,14 @@ onMounted(() => {
   const cursorScale = document.querySelectorAll('.cursor-scale')
   cursorScale.forEach(link => {
     link.addEventListener('mouseleave', () => {
-      cursor.value.classList.remove('grow');
-      cursor.value.classList.remove('grow-small');
+      cursor.value?.classList?.remove('grow');
+      cursor.value?.classList?.remove('grow-small');
     });
     link.addEventListener('mousemove', () => {
-      cursor.value.classList.add('grow');
-      if (link.classList.contains('small')) {
-        cursor.value.classList.remove('grow');
-        cursor.value.classList.add('grow-small');
+      cursor.value?.classList?.add('grow');
+      if (link?.classList?.contains('small')) {
+        cursor.value?.classList?.remove('grow');
+        cursor.value?.classList?.add('grow-small');
       }
     });
   });
@@ -115,22 +115,24 @@ onBeforeUnmount(() => {
   margin-top: -20px;
   border-radius: 50%;
   background: #ffd803;
-  transition: transform .3s ease;
+  transition: transform .3s ease-in;
   transform-origin: center center;
   pointer-events: none;
   z-index: 1000;
 
   &.big {
     background-color: transparent;
-    border: 0.2px solid #ffd803;
-    -webkit-transform: scale(5) translateX(-25%) translateY(-25%);
-    transform: scale(5) translateX(-25%) translateY(-25%);
+    border: 0.1px solid #ffd803;
+    -webkit-transform: scale(10) translateX(-25%) translateY(-25%);
+    transform: scale(10) translateX(-25%) translateY(-25%);
   }
 }
 
 .grow,
 .grow-small {
-  transform: scale(20);
+  width: 10px;
+  height: 10px;
+  transform: scale(40);
   background: #fff;
   mix-blend-mode: difference;
   border: none;

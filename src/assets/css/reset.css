@@ -35,6 +35,7 @@ body {
   font-family: fang;
   font-size: 28rem;
   text-align: left;
+  cursor: none;
 }
 
 select {
