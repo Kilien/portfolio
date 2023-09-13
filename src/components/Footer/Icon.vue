@@ -1,22 +1,37 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Client } from "@xmtp/xmtp-js";
+import { useAppStore } from "@/store/appStore";
+import { ethers } from "ethers";
+
+const appStore = useAppStore();
+
+const isShow = ref(false);
+
+function launchTo(url) {
+  if (url === '/') return;
+  // 外链跳转
+  window.open(url);
+  return;
+}
+</script>
 
 <template>
   <ul class="wrapper">
-    <li class="icon facebook">
-      <span class="tooltip">Facebook</span>
-      <img src="@img/home/icon/icon-facebook.svg" alt="" class="w-46rem md:w-20rem" />
+    <li class="icon github" @click="launchTo('https://github.com/Kilien')">
+      <span class="tooltip">Github</span>
+      <img src="@img/home/icon/GitHub.svg" alt="" class="w-46rem md:w-30rem" />
     </li>
-    <li class="icon instagram">
+    <li class="icon email" @click="launchTo('mailto:kilienazure@gmail.com')">
+      <span class="tooltip">Email</span>
+      <img src="@img/home/icon/Email.svg" alt="" class="w-46rem md:w-30rem" />
+    </li>
+    <li class="icon instagram" @click="launchTo('https://www.instagram.com/kilienazure')">
       <span class="tooltip">Instagram</span>
-      <img src="@img/home/icon/icon-instagram.svg" alt="" class="w-46rem md:w-20rem" />
+      <img src="@img/home/icon/instagram.svg" alt="" class="w-46rem md:w-30rem" />
     </li>
-    <li class="icon youtube">
-      <span class="tooltip">Youtube</span>
-      <img src="@img/home/icon/icon-youtube.svg" alt="" class="w-46rem md:w-20rem" />
-    </li>
-    <li class="icon github">
-      <span class="tooltip">Tiktok</span>
-      <img src="@img/home/icon/icon-tiktok.svg" alt="" class="w-46rem md:w-20rem" />
+    <li class="icon youtube" @click="isShow = true">
+      <span class="tooltip">Chat</span>
+      <img src="@img/home/icon/chat.svg" alt="" class="w-46rem md:w-30rem" />
     </li>
   </ul>
 </template>
@@ -25,6 +40,7 @@
 .wrapper {
   display: inline-flex;
   list-style: none;
+
   .icon {
     position: relative;
     background: #ffffff;
@@ -41,6 +57,7 @@
     box-shadow: 0 10rem 10rem rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
     .tooltip {
       position: absolute;
       top: 0;
@@ -53,6 +70,7 @@
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
       // 顶部栏
       &::before {
         position: absolute;
@@ -74,9 +92,9 @@
         visibility: visible;
         pointer-events: auto;
       }
-      > img {
-        filter: invert(98%) sepia(16%) saturate(57%) hue-rotate(253deg) brightness(113%)
-          contrast(187%);
+
+      >img {
+        filter: invert(98%) sepia(16%) saturate(57%) hue-rotate(253deg) brightness(113%) contrast(187%);
       }
     }
   }
@@ -87,9 +105,9 @@
   text-shadow: 0rem -1rem 0rem rgba(0, 0, 0, 0.1);
 }
 
-.wrapper .facebook:hover,
-.wrapper .facebook:hover .tooltip,
-.wrapper .facebook:hover .tooltip::before {
+.wrapper .email:hover,
+.wrapper .email:hover .tooltip,
+.wrapper .email:hover .tooltip::before {
   background: #1877f2;
   color: #ffffff;
 }
@@ -120,5 +138,21 @@
 .wrapper .youtube:hover .tooltip::before {
   background: #cd201f;
   color: #ffffff;
+}
+
+.pop-wrap {
+  width: 480rem;
+  height: 500rem;
+  border-radius: 20rem;
+  background-color: #efefef;
+
+  .btn {
+    width: 200rem;
+    height: 72rem;
+    color: #FFF;
+    font-size: 24rem;
+    border-radius: 6rem;
+    background-color: skyblue;
+  }
 }
 </style>

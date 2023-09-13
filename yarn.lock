@@ -2063,7 +2063,7 @@ estree-walker@^2.0.1, estree-walker@^2.0.2:
 
 ethers@5.7.2:
   version "5.7.2"
-  resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.7.2.tgz#3a7deeabbb8c030d4126b24f84e525466145872e"
+  resolved "https://registry.npmjs.org/ethers/-/ethers-5.7.2.tgz#3a7deeabbb8c030d4126b24f84e525466145872e"
   integrity sha512-wswUsmWo1aOK8rR7DIKiWSw9DbLWe6x98Jrn8wcTflTVvaXhAMaB5zGAXy0GYQEQp9iO1iSHWVyARQm11zUtyg==
   dependencies:
     "@ethersproject/abi" "5.7.0"
@@ -2301,7 +2301,7 @@ human-signals@^2.1.0:
 
 ieee754@^1.1.13:
   version "1.2.1"
-  resolved "https://registry.npmmirror.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
+  resolved "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
   integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
 
 imagesloaded@^5.0.0:

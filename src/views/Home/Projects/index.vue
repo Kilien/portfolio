@@ -25,7 +25,7 @@ onMounted(() => {
     const endValue = viewportHeight / 2;
 
     // Loop through each grid item to add animations
-    gridItems.forEach((item, index) => {
+    gridItems.forEach((item:any, index) => {
       // Get the previous element sibling for the current item
       const previousElementSibling = item.previousElementSibling;
       // Determine if the current item is on the left side based on its position relative to the previous item
@@ -102,7 +102,6 @@ onMounted(() => {
 <style lang="scss" scoped>
 .project-wrap {
   width: 100%;
-  margin: 400rem 0;
   @include flexPos(center);
   flex-direction: column;
 
@@ -112,7 +111,7 @@ onMounted(() => {
     grid-auto-rows: auto;
     display: grid;
     position: relative;
-    margin: 10vh auto 50vh;
+    margin: 10vh auto 15vh;
 
     .grid__item {
       grid-column: var(--c) / span var(--s);

@@ -31,9 +31,9 @@ export default {
     Footer
   },
   setup() {
+    useLoadAnimate();
     const appStore = useAppStore();
     const route = useRoute();
-    useLoadAnimate();
 
     const showTopBar = computed(() => {
       if (route.name === 'home') {
