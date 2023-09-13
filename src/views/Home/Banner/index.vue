@@ -9,7 +9,7 @@ const appStore = useAppStore();
 const header = ref(null);
 const headerContainer = ref(null);
 const headerContainerSubtitle = ref(null);
-const subTitleText = ref('Software Developer');
+const subTitleText = ref($t('base.30'));
 
 onMounted(() => {
   gsap.fromTo(
@@ -76,10 +76,10 @@ onMounted(() => {
     <div ref="headerContainer" class="header__container">
       <h1 class="header__container__title">
         <span class="line" aria-hidden="true">
-          <span class="line__content text-64">{{ $p('Qifan') }}</span>
+          <span class="line__content text-64">{{ $t('base.23') }}</span>
         </span>
         <span class="line" aria-hidden="true">
-          <span class="line__content ml-50 mt-25 text-64">{{ $p('Zhuang') }}</span>
+          <span class="line__content ml-50 mt-25 text-64">{{ $t('base.24') }}</span>
         </span>
       </h1>
 

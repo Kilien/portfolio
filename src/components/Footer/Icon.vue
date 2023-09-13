@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Client } from "@xmtp/xmtp-js";
 import { useAppStore } from "@/store/appStore";
 import { ethers } from "ethers";
 

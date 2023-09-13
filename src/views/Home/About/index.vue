@@ -58,10 +58,8 @@ onMounted(() => {
 <template>
   <section class="about-wrap">
     <div class="content-wrap">
-      <h1 class="title text-64 mb-24">{{ $p('About') }}</h1>
-      <p class="paragraph">{{ $p(`Hello everyone! I'm Qifan Zhuang, a software developer from China. Although I mainly
-        write JS/TS, HTML/CSS and Python, I actually use low-level languages like Rust as well. Other than programming, I
-        like to watch anime and writing.`) }}</p>
+      <h1 class="title text-64 mb-24">{{ $t('base.4') }}</h1>
+      <p class="paragraph">{{ $t('base.22') }}</p>
     </div>
 
     <ul class="about-tech">

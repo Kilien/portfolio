@@ -38,7 +38,7 @@ async function handleLink() {
     padding: 0 30rem;
     color: #fff;
     @include flexPos(center);
-    font-size: 24rem;
+    font-size: 20rem;
     border-radius: 8rem;
   }
 

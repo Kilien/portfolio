@@ -17,14 +17,14 @@ export interface IMemu {
 const menuListValue = reactive<IMemu[]>([
   {
     id: 1,
-    name: 'Home',
+    name: 'base.3',
     logo: require('@img/holder.png'),
     urlName: 'home',
     active: false,
   },
   {
     id: 2,
-    name: 'Blog',
+    name: 'base.19',
     link: 'https://kilien.github.io',
     logo: require('@img/holder.png'),
     urlName: '/',
@@ -32,21 +32,14 @@ const menuListValue = reactive<IMemu[]>([
   },
   {
     id: 3,
-    name: 'About',
+    name: 'base.4',
     logo: require('@img/holder.png'),
     urlName: '/',
     active: false,
   },
   {
     id: 4,
-    name: 'Project',
-    logo: require('@img/holder.png'),
-    urlName: '/',
-    active: false,
-  },
-  {
-    id: 5,
-    name: 'Contact',
+    name: 'base.20',
     logo: require('@img/holder.png'),
     urlName: '/',
     active: false,

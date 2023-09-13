@@ -17,7 +17,7 @@ const appStore = useAppStore();
 
     <div class="copyright" data-scroll data-scroll-speed="1">
       <p class="text-32rem md:text-20rem px-40rem md:px-0 text-center leading-2">
-        Life has no limits. Move forward.
+        {{ $t('base.18') }}
       </p>
       <p class="text-24rem md:text-14rem mt-40rem leading-16rem">
         Copyright © 2023

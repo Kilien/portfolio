@@ -16,7 +16,20 @@
     "14": "Switched",
     "15": "Switching network failed, please switch manually",
     "16": "Please connect the wallet first",
-    "17": "Language"
+    "17": "Language",
+    "18": "Life has no limits. Move forward.",
+    "19": "Blog",
+    "20": "Project",
+    "21": "Contact",
+    "22": "Hello everyone! I'm Qifan Zhuang, a software developer from China. Although I mainly\r\n        write JS/TS, HTML/CSS and Python, I actually use low-level languages like Rust as well. Other than programming, I\r\n        like to watch anime and writing.",
+    "23": "Qifan",
+    "24": "Zhuang",
+    "25": "Portfolio",
+    "26": "Flare",
+    "27": "wxreader",
+    "28": "QEMO",
+    "29": "Yuri",
+    "30": "Software Developer"
   },
   "extra": {}
 }

@@ -27,7 +27,7 @@ function handleMenu() {
     </div>
 
     <ul class="menu-list" v-else>
-      <li class="text-20 ml-25 cursor-pointer hover:(scale-125 transition)" v-for="item in menuList" :key="item.id" @click="launchTo(item)">{{ item.name }}</li>
+      <li class="text-20 ml-25 cursor-pointer hover:(scale-125 transition)" v-for="item in menuList" :key="item.id" @click="launchTo(item)">{{ $t(item.name) }}</li>
     </ul>
 
     <!-- 一些工具：钱包、选择语言等 -->
