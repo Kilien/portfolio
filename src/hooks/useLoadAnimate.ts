@@ -1,5 +1,6 @@
 import { useAppStore, storeToRefs } from '@store/appStore';
 import Lenis from '@studio-freight/lenis';
+import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useRoute } from 'vue-router';
 
@@ -9,6 +10,7 @@ import { useRoute } from 'vue-router';
 export default () => {
   const appStore = useAppStore();
   const route = useRoute();
+  gsap.registerPlugin(ScrollTrigger);
 
   const { welcoming } = storeToRefs(appStore);
 
