@@ -41,11 +41,6 @@ export default (config) => {
   // 是否要打包到测试网(生成子路径)
   return defineConfig({
     base: getEnv(config.mode).viteBase,
-    define: {
-      global: {
-        Buffer: Buffer,
-      },
-    },
     css: {
       preprocessorOptions: {
         scss: {
