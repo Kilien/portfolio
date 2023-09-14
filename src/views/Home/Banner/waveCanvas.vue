@@ -42,7 +42,7 @@ export default {
     camera.position.set(0, 0, 1);
 
     const size = 2;
-    const geometry = new THREE.PlaneBufferGeometry(size * aspect, size);
+    const geometry = new THREE.PlaneGeometry(size * aspect, size);
     const material = new THREE.ShaderMaterial({
       fragmentShader,
       vertexShader,

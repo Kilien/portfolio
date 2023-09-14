@@ -2,6 +2,7 @@ import i18n from '@/locales/i18n';
 import { useAppStore } from '@/store/appStore';
 import { ElMessage } from 'element-plus';
 import { reactive, readonly } from 'vue';
+import { scrollIntoView } from '@/utils/scrollIntoView';
 
 export interface IMemu {
   id: number;
@@ -20,7 +21,7 @@ const menuListValue = reactive<IMemu[]>([
     name: 'base.3',
     logo: require('@img/holder.png'),
     urlName: 'home',
-    active: false,
+    active: false
   },
   {
     id: 2,
@@ -28,22 +29,29 @@ const menuListValue = reactive<IMemu[]>([
     link: 'https://kilien.github.io',
     logo: require('@img/holder.png'),
     urlName: '/',
-    active: false,
+    active: false
   },
   {
     id: 3,
     name: 'base.4',
     logo: require('@img/holder.png'),
-    urlName: '/',
-    active: false,
+    urlName: '#About',
+    active: false
   },
   {
     id: 4,
     name: 'base.20',
     logo: require('@img/holder.png'),
-    urlName: '/',
-    active: false,
+    urlName: '#Project',
+    active: false
   },
+  {
+    id: 5,
+    name: 'base.21',
+    logo: require('@img/holder.png'),
+    urlName: '#Footer',
+    active: false
+  }
 ]);
 
 /**
@@ -51,7 +59,7 @@ const menuListValue = reactive<IMemu[]>([
  * @param menuItem 菜单项
  */
 export function setMenuList(menuItem) {
-  menuListValue.forEach((item) => {
+  menuListValue.forEach(item => {
     if (menuItem.id === item.id) {
       item = menuItem;
     }
@@ -82,18 +90,18 @@ export const useTopBar = () => {
       id: 1,
       name: '中文',
       target: 'cn',
-      active: true,
+      active: true
     },
     {
       id: 2,
       name: 'English',
       target: 'en',
-      active: false,
-    },
+      active: false
+    }
   ]);
 
   // 当前选中语言
-  const curLang = computed(() => langList.find((item) => item.target === appStore.curLang).name);
+  const curLang = computed(() => langList.find(item => item.target === appStore.curLang).name);
 
   /**
    * 路由跳转
@@ -109,8 +117,13 @@ export const useTopBar = () => {
     if (item.urlName === '' || item.urlName === '/') {
       ElMessage({
         type: 'info',
-        message: $t('base.2'),
+        message: $t('base.2')
       });
+      return;
+    }
+
+    if (item.urlName.includes('#')) {
+      scrollIntoView(item.urlName);
       return;
     }
 
@@ -126,7 +139,7 @@ export const useTopBar = () => {
   function pickLang(lang) {
     gThis.$i18n.locale = lang.target;
     appStore.setLang(lang.target);
-    langList.forEach((item) => {
+    langList.forEach(item => {
       item.active = lang.id === item.id;
     });
   }

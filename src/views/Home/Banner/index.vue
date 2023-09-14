@@ -25,19 +25,19 @@ onMounted(() => {
       }
     }
   );
-  gsap.fromTo(
-    '.scroll-down',
-    { opacity: 1 },
-    {
-      opacity: 0,
-      scrollTrigger: {
-        scrub: 0.75,
-        trigger: header.value,
-        start: 'top+=25% top',
-        end: 'bottom-=25% top'
-      }
-    }
-  );
+  // gsap.fromTo(
+  //   '.scroll-down',
+  //   { opacity: 1 },
+  //   {
+  //     opacity: 0,
+  //     scrollTrigger: {
+  //       scrub: 0.75,
+  //       trigger: header.value,
+  //       start: 'top+=25% top',
+  //       end: 'bottom-=25% top'
+  //     }
+  //   }
+  // );
   const tl = gsap.timeline({
     paused: true,
     delay: 0.25,
@@ -54,13 +54,7 @@ onMounted(() => {
     '-=0.75'
   );
 
-  tl.from(
-    '.nav__sections__list__section, .nav__menu-button',
-    { opacity: 0, stagger: 0.05 },
-    '<+0.75'
-  );
-
-  tl.from('.scroll-down', { opacity: 0 }, '<+0.25');
+  // tl.from('.scroll-down', { opacity: 0 }, '<+0.25');
 
   watch(() => [appStore.welcoming], () => {
     tl.play();

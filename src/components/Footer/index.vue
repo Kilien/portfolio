@@ -6,7 +6,7 @@ const appStore = useAppStore();
 </script>
 
 <template>
-  <div class="footer-wrap" data-scroll-section>
+  <div class="footer-wrap" id="Footer" data-scroll-section>
     <div class="content-wrap">
       <div class="content">
 

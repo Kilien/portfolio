@@ -56,7 +56,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="about-wrap">
+  <section class="about-wrap" id="About">
     <div class="content-wrap">
       <h1 class="title text-64 mb-24">{{ $t('base.4') }}</h1>
       <p class="paragraph">{{ $t('base.22') }}</p>

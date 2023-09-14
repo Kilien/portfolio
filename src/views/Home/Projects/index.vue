@@ -82,7 +82,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="project-wrap">
+  <section class="project-wrap" id="Project">
     <h1 class="title text-64 mb-24">{{ $t('base.20') }}</h1>
 
     <div class="grid">
