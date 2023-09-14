@@ -1,16 +1,80 @@
 <script setup lang="ts">
+import { Client } from "@xmtp/xmtp-js";
+import { bpEmpty } from 'bp-math';
 import { useAppStore } from "@/store/appStore";
 import { ethers } from "ethers";
+import { loadKeys, storeKeys } from "@/utils/xmtpHelpers";
 
 const appStore = useAppStore();
-
+const sendAddr = '0x3bC893BDdBBF5817a61B396A1508988f0112f126'
 const isShow = ref(false);
+const convRef = ref(null);
+const msgList = ref([]);
+const clientRef = ref(null);
+const isConnected = computed(() => {
+  return !bpEmpty(appStore.defaultAccount);
+})
+
+const isOnNetwork = ref(false);
 
 function launchTo(url) {
   if (url === '/') return;
   // 外链跳转
   window.open(url);
   return;
+}
+
+async function initXmtp() {
+  // const provider = new ethers.providers.Web3Provider(window.ethereum);
+  // const signer = provider.getSigner();
+  const signer = toRaw(appStore.ethersObj.signerValue);
+  let keys = loadKeys(sendAddr);
+  if (!keys) {
+    keys = await Client.getKeys(signer, {
+      env: "production",
+      skipContactPublishing: true,
+      persistConversations: false,
+    });
+    storeKeys(sendAddr, keys);
+  }
+
+  const xmtp = await Client.create(signer, { env: "production", privateKeyOverride: keys });
+  console.log('xmtp...', xmtp);
+
+  newConversation(xmtp, sendAddr);
+
+  isOnNetwork.value = !!xmtp.address;
+  clientRef.value = xmtp;
+}
+
+// Function to start a new conversation
+async function newConversation(xmtp_client, addressTo) {
+  if (await xmtp_client?.canMessage(sendAddr)) {
+    // Create a new conversation with the given address
+    const conversation = await xmtp_client.conversations.newConversation(
+      addressTo,
+    );
+    convRef.value = conversation;
+
+    await streamMessages();
+
+    const messages = await conversation.messages();
+    msgList.value = messages;
+  } else {
+    console.log("Can't message because is not on the network.");
+  }
+}
+
+// Function to stream messages from conversation
+async function streamMessages() {
+  const newStream = await convRef.value.streamMessages();
+
+  for await (const msg of newStream) {
+    const exists = msgList.value.find((m) => m.id === msg.id);
+    if (!exists) {
+      msgList.value.push(msg);
+    }
+  }
 }
 </script>
 
@@ -32,6 +96,21 @@ function launchTo(url) {
       <span class="tooltip">Chat</span>
       <img src="@img/home/icon/chat.svg" alt="" class="w-46rem md:w-30rem" />
     </li>
+
+    <van-popup v-model:show="isShow">
+      <div class="pop-wrap">
+        <div v-if="!isConnected" class="thirdWeb">
+          <button @click="appStore.linkWallet" class="btn">{{ $t('base.1') }}</button>
+        </div>
+        <!-- Section to connect to XMTP, shown if connected to wallet but not to XMTP -->
+        <div v-if="isConnected && !isOnNetwork" class="xmtp">
+          <button @click="initXmtp" class="btn">{{$p('Enable XMTP identity')}}</button>
+        </div>
+        <template v-if="isConnected && isOnNetwork && msgList">
+          <Chat :client="clientRef" :conversation="convRef" :messageHistory="msgList" />
+        </template>
+      </div>
+    </van-popup>
   </ul>
 </template>
 
@@ -140,18 +219,31 @@ function launchTo(url) {
 }
 
 .pop-wrap {
-  width: 480rem;
-  height: 500rem;
+  width: 500rem;
+  height: 600rem;
+  @include flexPos(center);
+  flex-direction: column;
   border-radius: 20rem;
   background-color: #efefef;
 
   .btn {
-    width: 200rem;
-    height: 72rem;
+    width: 100%;
     color: #FFF;
     font-size: 24rem;
-    border-radius: 6rem;
-    background-color: skyblue;
+    border-radius: 10rem;
+    padding: 20rem 30rem;
+    background: linear-gradient(315deg, #1E50F1 0%, #4CE2F6 100%);
+    box-shadow: inset 0px 2px 20px 0px #a7eaff;
+
+    &:disabled {
+      color: #878999;
+      background: #3e415a;
+      box-shadow: none;
+    }
+
+    &:active {
+      background: linear-gradient(315deg, #2951d4 0%, #0940f3 100%);
+    }
   }
 }
 </style>

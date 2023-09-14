@@ -10,7 +10,7 @@ import postcsspxtoviewport from 'postcss-px-to-viewport';
 import { getEnv } from './src/utils/buildTestnet';
 import UnoCSS from 'unocss/vite';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
-
+import { Buffer } from "buffer";
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import';
@@ -41,7 +41,11 @@ export default (config) => {
   // 是否要打包到测试网(生成子路径)
   return defineConfig({
     base: getEnv(config.mode).viteBase,
-
+    define: {
+      global: {
+        Buffer: Buffer,
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {

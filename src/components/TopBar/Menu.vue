@@ -33,7 +33,7 @@ const handleLaunchTo = (item) => {
       leave-active-class="animate__animated animate__fadeOutLeft"
     >
       <div class="menu-panel" v-show="props.isShowMenu">
-        <WalletBtn />
+        <!-- <WalletBtn /> -->
 
         <div class="mt-100rem">
           <LangCollapse />

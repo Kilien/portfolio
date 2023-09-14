@@ -44,20 +44,12 @@ const appStore = useAppStore();
 
     .content {
       @include -width(100%, 100%, 12rem);
-      @include flexPos(space-between);
 
-      @media (max-width: $phone) {
-        @include flexPos(center);
-        flex-direction: column;
+      @include flexPos(center);
+      flex-direction: column;
 
-        .social-wrap {
-          order: 1;
-        }
-
-        .Liza-logo {
-          order: 3;
-          margin-top: 10rem;
-        }
+      .social-wrap {
+        order: 1;
       }
 
       .menu-list {

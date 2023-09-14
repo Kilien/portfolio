@@ -48,7 +48,7 @@ function handleMenu() {
       </el-dropdown>
 
       <!-- 已链接钱包展示钱包地址 -->
-      <WalletBtn />
+      <!-- <WalletBtn /> -->
     </div>
 
     <!-- 移动端菜单 -->

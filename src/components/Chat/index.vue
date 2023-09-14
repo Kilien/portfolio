@@ -27,10 +27,6 @@ async function handleInputChange(event) {
   }
 }
 
-function updateInputValue(event) {
-  inpVal.value = event.target.value;
-}
-
 function logMessage(message) {
   console.log(message);
 }
@@ -42,45 +38,43 @@ function logMessage(message) {
       <ul class="messageList">
         <li v-for="message in uniqueMessages" :key="message.id" class="messageItem"
           title="Click to log this message to the console" @click="logMessage(message)">
-          <strong>
-            {{ message.senderAddress === client.address ? "You" : "Bot" }}:
+          <strong class="text-28">
+            {{ message.senderAddress === client.address ? "You" : "Fan" }}:
           </strong>
-          <span>{{ message.content }}</span>
+          <span class="text-20">{{ message.content }}</span>
           <span class="date"> ({{ message.sent.toLocaleTimeString() }})</span>
         </li>
       </ul>
     </div>
     <div class="inputContainer">
-
-      <input type="text" class="inputField" v-model="inpVal" placeholder="Type your text here " />
-      <button class="sendButton" @click="handleSend"></button>
+      <input type="text" class="inputField" v-model="inpVal" @keypress="handleInputChange" :placeholder="$p('Type your text here')" />
+      <button class="btn btn--primary btn--inside uppercase" @click="handleSend">{{ $p('send') }}</button>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .messageList {
-  padding: 0px;
+  padding: 0rem;
 }
 
 .Chat {
-  background-color: white;
+  background-color: #efefef;
   margin: 0;
   color: black;
   padding: 0;
-  font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100%;
+  border-radius: 10rem;
   justify-content: center;
-  margin: 0;
 }
 
 .messageContainer {
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
+  padding: 10rem;
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
@@ -89,50 +83,57 @@ function logMessage(message) {
 .inputContainer {
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-top: 1px solid #ccc;
+  padding: 15rem;
+  border-top: 1rem solid #ccc;
 }
 
 .inputField {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  color: #555;
-  box-sizing: border-box;
+  background: #fff;
+  color: #a3a3a3;
+  font: inherit;
+  box-shadow: 0 6rem 10rem 0 rgba(0, 0, 0, .1);
+  border: 0;
+  outline: 0;
+  padding: 10rem 18rem;
 }
 
-.sendButton {
-  background-color: #f7f7f7;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 12px;
-  font-size: 16px;
-  color: #555;
+.btn {
+  display: inline-block;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  font-size: 24rem;
+  transition: all 200ms ease-in;
   cursor: pointer;
-  margin-left: 10px;
-  outline: none;
-}
 
-.sendButton:active {
-  background-color: #e5e5e5;
-}
+  &--primary {
+    background: #7f8ff4;
+    color: #FFF;
+    box-shadow: 0 0 10rem 2rem rgba(0, 0, 0, .1);
+    border-radius: 6rem;
+    padding: 5rem 26rem;
 
-.selectedMessage {
-  background-color: black;
-  color: white;
-}
+    &:hover {
+      background: darken(#7f8ff4, 4%);
+    }
 
-.eyes {
-  align-items: center;
-  font-size: 12px;
-  cursor: pointer;
+    &:active {
+      background: #7f8ff4;
+      box-shadow: inset 0 0 10rem 2rem rgba(0, 0, 0, .2);
+    }
+  }
+
+  &--inside {
+    margin-left: -96rem;
+  }
 }
 
 .date {
   color: grey;
-  font-size: 12px;
+  font-size: 12rem;
 }
 </style>

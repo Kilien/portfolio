@@ -43,7 +43,7 @@ const useAppStore = defineStore('app', {
       countChain: 0,
     },
     isFirstIn: true, // 首次进入
-    welcoming: false, // 开场动画
+    welcoming: true, // 开场动画
   }),
 
   actions: {
