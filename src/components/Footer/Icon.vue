@@ -2,8 +2,8 @@
 import { Client } from "@xmtp/xmtp-js";
 import { bpEmpty } from 'bp-math';
 import { useAppStore } from "@/store/appStore";
-import { ethers } from "ethers";
 import { loadKeys, storeKeys } from "@/utils/xmtpHelpers";
+import { ElMessage } from "element-plus";
 
 const appStore = useAppStore();
 const sendAddr = '0x3bC893BDdBBF5817a61B396A1508988f0112f126'
@@ -25,21 +25,18 @@ function launchTo(url) {
 }
 
 async function initXmtp() {
-  // const provider = new ethers.providers.Web3Provider(window.ethereum);
-  // const signer = provider.getSigner();
   const signer = toRaw(appStore.ethersObj.signerValue);
-  let keys = loadKeys(sendAddr);
-  if (!keys) {
-    keys = await Client.getKeys(signer, {
-      env: "production",
-      skipContactPublishing: true,
-      persistConversations: false,
-    });
-    storeKeys(sendAddr, keys);
-  }
+  // let keys = loadKeys(sendAddr);
+  // if (!keys) {
+  //   keys = await Client.getKeys(signer, {
+  //     env: "production",
+  //     skipContactPublishing: true,
+  //   });
+  //   storeKeys(sendAddr, keys);
+  // }
 
-  const xmtp = await Client.create(signer, { env: "production", privateKeyOverride: keys });
-  console.log('xmtp...', xmtp);
+  const xmtp = await Client.create(signer, { env: "production" });
+  // console.log('xmtp...', xmtp);
 
   newConversation(xmtp, sendAddr);
 
@@ -50,18 +47,18 @@ async function initXmtp() {
 // Function to start a new conversation
 async function newConversation(xmtp_client, addressTo) {
   if (await xmtp_client?.canMessage(sendAddr)) {
-    // Create a new conversation with the given address
     const conversation = await xmtp_client.conversations.newConversation(
       addressTo,
     );
     convRef.value = conversation;
 
-    await streamMessages();
+    streamMessages();
 
     const messages = await conversation.messages();
     msgList.value = messages;
   } else {
     console.log("Can't message because is not on the network.");
+    ElMessage.error(`Can't message because is not on the network.`);
   }
 }
 

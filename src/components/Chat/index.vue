@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import dayjs from 'dayjs';
 
 const props = defineProps<{
   messageHistory: any; // 历史信息
@@ -34,15 +35,12 @@ function logMessage(message) {
 
 <template>
   <div class="Chat">
+    <van-divider class="text-18 pt-10" v-if="uniqueMessages">{{ dayjs(uniqueMessages[0]?.sent).format('MMMM D, YYYY')  }}</van-divider>
     <div class="messageContainer">
-      <ul class="messageList">
-        <li v-for="message in uniqueMessages" :key="message.id" class="messageItem"
-          title="Click to log this message to the console" @click="logMessage(message)">
-          <strong class="text-28">
-            {{ message.senderAddress === client.address ? "You" : "Fan" }}:
-          </strong>
-          <span class="text-20">{{ message.content }}</span>
-          <span class="date"> ({{ message.sent.toLocaleTimeString() }})</span>
+      <ul class="w-full">
+        <li v-for="message in uniqueMessages" :key="message.id" class="w-full flex flex-col mb-10" :class="[message.senderAddress === client.address ? 'items-end' : 'items-start']" @click="logMessage(message)">
+          <div class="msg-sender" :class="[message.senderAddress === client.address ? 'bg-[#4f46e5]' : 'bg-[#cdcaca] text-dark-500!']">{{ message.content }}</div>
+          <span class="date"> ({{ dayjs(message.sent).format('h:mm A')  }})</span>
         </li>
       </ul>
     </div>
@@ -54,9 +52,6 @@ function logMessage(message) {
 </template>
 
 <style lang="scss" scoped>
-.messageList {
-  padding: 0rem;
-}
 
 .Chat {
   background-color: #efefef;
@@ -118,11 +113,11 @@ function logMessage(message) {
     padding: 5rem 26rem;
 
     &:hover {
-      background: darken(#7f8ff4, 4%);
+      background: darken(#4f46e5, 4%);
     }
 
     &:active {
-      background: #7f8ff4;
+      background: #4f46e5;
       box-shadow: inset 0 0 10rem 2rem rgba(0, 0, 0, .2);
     }
   }
@@ -132,6 +127,12 @@ function logMessage(message) {
   }
 }
 
+.msg-sender {
+  color: #FFF;
+  font-size: 20rem;
+  padding: 6rem 15rem;
+  border-radius: 6rem;
+}
 .date {
   color: grey;
   font-size: 12rem;
