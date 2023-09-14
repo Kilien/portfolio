@@ -29,7 +29,10 @@
     "27": "wxreader",
     "28": "QEMO",
     "29": "Yuri",
-    "30": "Software Developer"
+    "30": "Software Developer",
+    "31": "Type your text here",
+    "32": "send",
+    "33": "Enable XMTP identity"
   },
   "extra": {}
 }

@@ -47,8 +47,8 @@ function logMessage(message) {
       </ul>
     </div>
     <div class="inputContainer">
-      <input type="text" class="inputField" v-model="inpVal" @keypress="handleInputChange" :placeholder="$p('Type your text here')" />
-      <button class="btn btn--primary btn--inside uppercase" @click="handleSend">{{ $p('send') }}</button>
+      <input type="text" class="inputField" v-model="inpVal" @keypress="handleInputChange" :placeholder="$t('base.31')" />
+      <button class="btn btn--primary btn--inside uppercase" @click="handleSend">{{ $t('base.32') }}</button>
     </div>
   </div>
 </template>

@@ -104,7 +104,7 @@ async function streamMessages() {
         </div>
         <!-- Section to connect to XMTP, shown if connected to wallet but not to XMTP -->
         <div v-if="isConnected && !isOnNetwork" class="xmtp">
-          <button @click="initXmtp" class="btn">{{$p('Enable XMTP identity')}}</button>
+          <button @click="initXmtp" class="btn">{{$t('base.33')}}</button>
         </div>
         <template v-if="isConnected && isOnNetwork && msgList">
           <Chat :client="clientRef" :conversation="convRef" :messageHistory="msgList" />
