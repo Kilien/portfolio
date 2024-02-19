@@ -101,7 +101,7 @@ export const useTopBar = () => {
   ]);
 
   // 当前选中语言
-  const curLang = computed(() => langList.find(item => item.target === appStore.curLang).name);
+  const curLang = computed(() => langList.find(item => item.target === appStore.curLang)?.name);
 
   /**
    * 路由跳转

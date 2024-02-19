@@ -12,19 +12,21 @@ const iconList = reactive([
     link: 'https://typescriptlang.org/'
   },
   {
-    svg: getImage('common/HTML.svg'),
+    svg: getImage('common/Python.svg'),
+    link: 'https://python.org'
   },
   {
-    svg: getImage('common/CSS.svg'),
+    svg: getImage('common/Vue.svg'),
+    link: 'https://vuejs.org'
+  },
+  {
+    svg: getImage('common/React.svg'),
+    link: 'https://react.dev'
   },
   {
     svg: getImage('common/Threejs.svg'),
     link: 'https://threejs.org/'
   },
-  {
-    svg: getImage('common/Python.svg'),
-    link: 'https://python.org/'
-  }
 ])
 
 onMounted(() => {
@@ -103,7 +105,7 @@ onMounted(() => {
 
 
       &:is(:hover, :focus-visible) {
-        transform: scale(0.9);
+        transform: scale(1.1);
       }
 
       .item-svg {
@@ -112,6 +114,10 @@ onMounted(() => {
         opacity: 0.75;
         height: auto;
         width: 100%;
+
+        &:hover {
+          filter: grayscale(0);
+        }
       }
     }
   }
