@@ -1,8 +1,10 @@
 <template>
   <!-- 顶部栏 -->
-  <TopBar v-if="showTopBar" />
+  <TopBar v-if="!isWelcoming" />
 
   <MousePoint v-if="appStore.curDevice !== 'phone'" />
+
+  <Welcome v-if="appStore.welcoming" />
 
   <!-- 各路由 -->
   <div id="mainContainer" :class="[{ welcoming: isWelcoming }]">
@@ -34,22 +36,10 @@ export default {
     useLoadAnimate();
     const appStore = useAppStore();
     const route = useRoute();
-
-    const showTopBar = computed(() => {
-      if (route.name === 'home') {
-        if (!appStore.welcoming) {
-          // 如果是首页，必须等开屏视频结束后才显示顶部栏
-          return true;
-        }
-        return false;
-      }
-      return true;
-    });
-
+    
     const isWelcoming = computed(() => route.name === 'home' && appStore.welcoming);
     return {
       appStore,
-      showTopBar,
       isWelcoming,
     };
   },

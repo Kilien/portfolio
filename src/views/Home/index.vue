@@ -3,10 +3,7 @@ import Banner from './Banner/index.vue';
 import About from './About/index.vue';
 import Projects from './Projects/index.vue';
 import textifyJs from 'textify.js';
-import { useAppStore, storeToRefs } from '@store/appStore';
 
-const appStore = useAppStore();
-const { welcoming } = storeToRefs(appStore);
 const { TextifyTitle, Textify } = textifyJs;
 
 onMounted(() => {
@@ -43,8 +40,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <Welcome v-show="welcoming" />
-
   <main class="home-wrap" id="header" data-scroll-container>
     <Banner />
 
