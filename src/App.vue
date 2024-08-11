@@ -1,11 +1,9 @@
 <template>
-  <!-- 顶部栏 -->
-  <TopBar v-if="!isWelcoming" />
-
   <MousePoint v-if="appStore.curDevice !== 'phone'" />
 
   <Welcome v-if="appStore.welcoming" />
-
+  <!-- 顶部栏 -->
+  <TopBar v-else />
   <!-- 各路由 -->
   <div id="mainContainer" :class="[{ welcoming: isWelcoming }]">
     <router-view v-slot="{ Component }">
@@ -20,24 +18,24 @@
 </template>
 
 <script>
-import TopBar from '@cps/TopBar/index.vue';
-import Footer from '@cps/Footer/index.vue';
-import { useRoute } from 'vue-router';
-import { useAppStore } from './store/appStore';
-import useLoadAnimate from './hooks/useLoadAnimate';
-import MousePoint from '@cps/MousePoint/index.vue';
+import TopBar from "@cps/TopBar/index.vue";
+import Footer from "@cps/Footer/index.vue";
+import { useRoute } from "vue-router";
+import { useAppStore } from "./store/appStore";
+import useLoadAnimate from "./hooks/useLoadAnimate";
+import MousePoint from "@cps/MousePoint/index.vue";
 
 export default {
   components: {
     TopBar,
-    Footer
+    Footer,
   },
   setup() {
     useLoadAnimate();
     const appStore = useAppStore();
     const route = useRoute();
-    
-    const isWelcoming = computed(() => route.name === 'home' && appStore.welcoming);
+
+    const isWelcoming = computed(() => route.name === "home" && appStore.welcoming);
     return {
       appStore,
       isWelcoming,

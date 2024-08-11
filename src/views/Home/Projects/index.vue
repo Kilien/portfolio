@@ -3,8 +3,8 @@ import { gsap } from 'gsap';
 import { getImage, preloadImages } from '@/utils/tools';
 
 const projectList = reactive([
-  { id: 1, name: 'base.25', style: '--r: 1;--c: 4;--s: 3;', time: '2023', image: getImage('home/project/profile.png'), link: '/' },
-  { id: 2, name: 'base.28', style: '--r: 2;--c: 1;--s:3;', time: '2023', image: getImage('home/project/panda.png'), link: 'https://withered-sound-1516.on.fleek.co' },
+  { id: 1, name: 'base.28', style: '--r: 1;--c: 4;--s: 3;', time: '2024', image: getImage('home/project/pingo.png'), link: 'https://pingo.work' },
+  { id: 2, name: 'base.25', style: '--r: 2;--c: 1;--s:3;', time: '2023', image: getImage('home/project/profile.png'), link: '/' },
   { id: 3, name: 'base.27', style: '--r: 3;--c: 4;--s: 4;', time: '2023', image: getImage('home/project/mwhy.png'), link: 'https://lively-mouse-4851.on.fleek.co' },
   { id: 4, name: 'base.26', style: '--r: 4;--c: 2;--s: 2;', time: '2023', image: getImage('home/project/flare.png'), link: 'https://flat-cake-9560.on.fleek.co' },
   { id: 5, name: 'base.29', style: '--r: 5;--c: 4;--s: 3;', time: '2022', image: getImage('home/project/yuri.png'), link: 'https://shrill-hat-6581.on.fleek.co' },
