@@ -1,98 +1,159 @@
-<script setup lang='ts'>
-import { gsap } from 'gsap';
-import { getImage, preloadImages } from '@/utils/tools';
+<script setup lang="ts">
+import { gsap } from "gsap";
+import { getImage, preloadImages } from "@/utils/tools";
 
 const projectList = reactive([
-  { id: 1, name: 'base.28', style: '--r: 1;--c: 4;--s: 3;', time: '2024', image: getImage('home/project/pingo.png'), link: 'https://pingo.work' },
-  { id: 2, name: 'base.25', style: '--r: 2;--c: 1;--s:3;', time: '2023', image: getImage('home/project/profile.png'), link: '/' },
-  { id: 3, name: 'base.27', style: '--r: 3;--c: 4;--s: 4;', time: '2023', image: getImage('home/project/mwhy.png'), link: 'https://lively-mouse-4851.on.fleek.co' },
-  { id: 4, name: 'base.26', style: '--r: 4;--c: 2;--s: 2;', time: '2023', image: getImage('home/project/flare.png'), link: 'https://flat-cake-9560.on.fleek.co' },
-  { id: 5, name: 'base.29', style: '--r: 5;--c: 4;--s: 3;', time: '2022', image: getImage('home/project/yuri.png'), link: 'https://shrill-hat-6581.on.fleek.co' },
-])
+  {
+    id: 1,
+    name: "base.25",
+    style: "--r: 1;--c: 4;--s: 3;",
+    time: "2025",
+    image: getImage("home/project/trade-ai.png"),
+    link: "https://trade-ai-nine.vercel.app",
+  },
+  {
+    id: 2,
+    name: "base.28",
+    style: "--r: 2;--c: 1;--s:3;",
+    time: "2024",
+    image: getImage("home/project/pingo.png"),
+    link: "https://pingo.work",
+  },
+  {
+    id: 3,
+    name: "base.27",
+    style: "--r: 3;--c: 4;--s: 4;",
+    time: "2023",
+    image: getImage("home/project/mwhy.png"),
+    link: "https://lively-mouse-4851.on.fleek.co",
+  },
+  {
+    id: 4,
+    name: "base.26",
+    style: "--r: 4;--c: 2;--s: 2;",
+    time: "2023",
+    image: getImage("home/project/flare.png"),
+    link: "https://flat-cake-9560.on.fleek.co",
+  },
+  {
+    id: 5,
+    name: "base.29",
+    style: "--r: 5;--c: 4;--s: 3;",
+    time: "2022",
+    image: getImage("home/project/yuri.png"),
+    link: "https://shrill-hat-6581.on.fleek.co",
+  },
+]);
 
 function launchTo(url) {
-  if (url === '/') return;
+  if (url === "/") return;
   // 外链跳转
   window.open(url);
   return;
 }
 
 onMounted(() => {
-  const gridItems = document.querySelectorAll('.grid__item');
+  const gridItems = document.querySelectorAll(".grid__item");
 
   const scroll = () => {
     const viewportHeight = window.innerHeight;
     const endValue = viewportHeight / 2;
 
     // Loop through each grid item to add animations
-    gridItems.forEach((item:any, index) => {
+    gridItems.forEach((item: any, index) => {
       // Get the previous element sibling for the current item
       const previousElementSibling = item.previousElementSibling;
       // Determine if the current item is on the left side based on its position relative to the previous item
-      const isLeftSide = previousElementSibling && (item?.offsetLeft + item?.offsetWidth <= previousElementSibling?.offsetLeft + 1);
+      const isLeftSide =
+        previousElementSibling &&
+        item?.offsetLeft + item?.offsetWidth <=
+          previousElementSibling?.offsetLeft + 1;
       // Determine the origin for transformations (either 100 or 0 depending on position)
       const originX = isLeftSide ? 100 : 0;
 
       const preview = gsap.timeline({
         defaults: {
-          ease: 'none'
+          ease: "none",
         },
         scrollTrigger: {
           trigger: item,
-          start: () => 'top bottom-=15%',
-          end: () => '+=50%',
-          toggleActions: 'play reverse play reverse',
-          scrub: true
-        }
-      })
+          start: () => "top bottom-=15%",
+          end: () => "+=50%",
+          toggleActions: "play reverse play reverse",
+          scrub: true,
+        },
+      });
 
-      preview.fromTo(item.querySelector('.grid__item-img'), {
-          yPercent: -100,
-          xPercent: isLeftSide ? 100 : -100
-        }, {
-          yPercent: 0,
-          xPercent: 0,
-        })
-        .fromTo(item.querySelector('.grid__item-img-inner'), {
-          yPercent: 100,
-          xPercent: isLeftSide ? -100 : 100,
-          filter: 'brightness(200%) contrast(300%)'
-        }, {
-          yPercent: 0,
-          xPercent: 0,
-          filter: 'brightness(100%) contrast(100%)'
-        }, 0)
-        .fromTo(item.querySelector('.grid__item-caption'), {
-          yPercent: 200,
-          xPercent: 50,
-          opacity: 0
-        }, {
-          //ease: 'power1',
-          yPercent: 0,
-          xPercent: 0,
-          opacity: 1
-        }, 0);
-
+      preview
+        .fromTo(
+          item.querySelector(".grid__item-img"),
+          {
+            yPercent: -100,
+            xPercent: isLeftSide ? 100 : -100,
+          },
+          {
+            yPercent: 0,
+            xPercent: 0,
+          }
+        )
+        .fromTo(
+          item.querySelector(".grid__item-img-inner"),
+          {
+            yPercent: 100,
+            xPercent: isLeftSide ? -100 : 100,
+            filter: "brightness(200%) contrast(300%)",
+          },
+          {
+            yPercent: 0,
+            xPercent: 0,
+            filter: "brightness(100%) contrast(100%)",
+          },
+          0
+        )
+        .fromTo(
+          item.querySelector(".grid__item-caption"),
+          {
+            yPercent: 200,
+            xPercent: 50,
+            opacity: 0,
+          },
+          {
+            //ease: 'power1',
+            yPercent: 0,
+            xPercent: 0,
+            opacity: 1,
+          },
+          0
+        );
     });
-  }
-  preloadImages('.grid__item-img-inner').then(() => {
+  };
+  preloadImages(".grid__item-img-inner").then(() => {
     scroll();
   });
-})
+});
 </script>
 
 <template>
   <section class="project-wrap" id="Project">
-    <h1 class="title text-64 mb-24">{{ $t('base.20') }}</h1>
+    <h1 class="title text-64 mb-24">{{ $t("base.20") }}</h1>
 
     <div class="grid">
-      <figure class="grid__item" v-for="item in projectList" :key="item.id" :style="item.style">
+      <figure
+        class="grid__item"
+        v-for="item in projectList"
+        :key="item.id"
+        :style="item.style"
+      >
         <div class="grid__item-img">
-          <div class="grid__item-img-inner" @click="launchTo(item.link)"
-            :style="{ backgroundImage: `url(${item.image})` }"></div>
+          <div
+            class="grid__item-img-inner"
+            @click="launchTo(item.link)"
+            :style="{ backgroundImage: `url(${item.image})` }"
+          ></div>
         </div>
         <figcaption class="grid__item-caption">
-          <h3>{{ $t(item.name) }}</h3> <span class="ml-20 text-18">{{ item.time }}</span>
+          <h3>{{ $t(item.name) }}</h3>
+          <span class="ml-20 text-18">{{ item.time }}</span>
         </figcaption>
       </figure>
     </div>
@@ -135,7 +196,6 @@ onMounted(() => {
           background-size: cover;
           position: relative;
         }
-
       }
 
       &-caption {
@@ -158,13 +218,6 @@ onMounted(() => {
         }
       }
     }
-
-
-
-
-
-
-
   }
 }
 </style>
